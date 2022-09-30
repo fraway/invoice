@@ -5,11 +5,13 @@ import { UsersRoutingModule } from './users-routing.module';
 import { AuthComponent } from './auth/auth.component';
 import { StoreModule } from '@ngrx/store';
 import { usersFeature } from './reducers';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
   declarations: [
-    AuthComponent
+    AuthComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

@@ -6,6 +6,7 @@ import { AuthComponent } from './auth/auth.component';
 import { StoreModule } from '@ngrx/store';
 import { usersFeature } from './reducers';
 import { ProfileComponent } from './profile/profile.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,6 +17,8 @@ import { ProfileComponent } from './profile/profile.component';
   imports: [
     CommonModule,
     UsersRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     StoreModule.forFeature(usersFeature)
   ]
 })

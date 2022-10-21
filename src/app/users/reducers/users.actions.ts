@@ -1,8 +1,9 @@
 import { createAction, props } from "@ngrx/store";
 
-export const setLoginStatus = createAction(
-    '[Users] Login'
+export const login = createAction(
+    '[Users] Login',
+    props<{email: string}>()
 );
-export const setLogoutStatus = createAction(
+export const logout = createAction(
     '[Users] Logout',
 );

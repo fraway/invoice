@@ -1,1 +1,7 @@
-<p>auth works!</p>
+<form [formGroup]="form" (submit)="login()">
+
+  <input type="text" formControlName="email">
+  <input type="password" formControlName="password">
+
+  <button type="submit">Login</button>
+</form>

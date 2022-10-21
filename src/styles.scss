@@ -1,7 +1,27 @@
-
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  main {
+    padding: 24px 20%
+  }
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  mat-form-field {
+    padding: 16px 0;
+  }
+}

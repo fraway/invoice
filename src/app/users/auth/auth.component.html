@@ -1,7 +1,20 @@
-<form [formGroup]="form" (submit)="login()">
+<form [formGroup]="form" (submit)="login()" *ngIf="!(isLoggedIn$ | async); else change">
+  <h1>Accedi</h1>
+  <mat-form-field appearance="outline">
+    <mat-label>E-mail</mat-label>
+    <input matInput type="email" placeholder="E-mail" formControlName="email">
+    <mat-icon matSuffix>email</mat-icon>
+  </mat-form-field>
 
-  <input type="text" formControlName="email">
-  <input type="password" formControlName="password">
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" placeholder="Password" formControlName="password">
+  </mat-form-field>
 
-  <button type="submit">Login</button>
+  <button mat-raised-button color="accent">Save</button>
 </form>
+
+
+<ng-template #change>
+  <app-change-email></app-change-email>
+</ng-template>

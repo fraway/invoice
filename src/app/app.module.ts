@@ -17,6 +17,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -27,12 +28,7 @@ import { AppEffects } from './app.effects';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
+    MaterialModule,
     StoreModule.forRoot(reducers, {
       metaReducers
     }),

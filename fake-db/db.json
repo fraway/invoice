@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin@invoice.com",
+      "password": "testpass"
+    }
+  ],
+  "customers": [],
+  "invoices": []
+}

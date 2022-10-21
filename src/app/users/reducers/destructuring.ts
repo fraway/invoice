@@ -13,12 +13,12 @@ const [_first, second] = items;
 const [__first, , _second] = items;
 const [___first, ...others] = items;
 
-interface User {
+interface person {
   email: string
   password: string
   age: number
 }
 
-function foo({ email }: User) {
+function foo({ email }: person) {
   console.log(email)
 }

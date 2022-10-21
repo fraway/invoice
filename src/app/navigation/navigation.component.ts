@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { filter, map, shareReplay, tap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { logout } from '../users/reducers/users.actions';
 
 @Component({
   selector: 'app-navigation',
@@ -16,6 +18,18 @@ export class NavigationComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  store = inject(Store)
+  isLoggedIn$ = inject(Store).select((s) => s.users).pipe(
+    tap(console.log),
+    filter(s => s !== undefined && s != null),
+    map((s) => s.isLoggedIn)
+  )
 
+  constructor(private breakpointObserver: BreakpointObserver) {
+  }
+
+  logout() {
+    // TODO: verify this
+    this.store.dispatch(logout())
+  }
 }

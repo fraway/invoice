@@ -30,5 +30,6 @@ export const usersFeature = createFeature({
 export const {
   name, // feature name
   reducer, // feature reducer
-  selectIsLoggedIn
+  selectIsLoggedIn,
+  selectUsername
 } = usersFeature;

@@ -1,0 +1,17 @@
+<h1>Cambia e-mail</h1>
+
+<form [formGroup]="form" (submit)="submit()">
+  <mat-form-field appearance="outline">
+    <mat-label>E-mail attuale</mat-label>
+    <input matInput placeholder="E-mail attuale" formControlName="currentEmail">
+    <mat-icon matSuffix>email</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Nuova e-mail</mat-label>
+    <input matInput placeholder="Nuova e-mail" formControlName="newEmail">
+    <mat-icon matSuffix>email</mat-icon>
+  </mat-form-field>
+
+  <button mat-raised-button>Save</button>
+</form>

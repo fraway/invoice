@@ -13,6 +13,8 @@ export class AuthComponent implements OnInit {
   _auth = inject(AuthService)
   fb = inject(NonNullableFormBuilder);
 
+  isLoggedIn$ = this._auth.isLoggedIn$;
+
   form = this.fb.group({
     email: emailFormControl(),
     password: passwordFormControl(),

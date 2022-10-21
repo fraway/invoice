@@ -1,5 +1,5 @@
 import { createFeature, createReducer, on } from "@ngrx/store";
-import { login, logout } from "./users.actions";
+import { login, loginSuccess, logout } from "./users.actions";
 
 export interface UsersState {
   isLoggedIn: boolean;
@@ -15,10 +15,10 @@ export const usersFeature = createFeature({
   name: 'users',
   reducer: createReducer<UsersState>(
     initialState,
-    on(login, (state, { email }) => ({
+    on(loginSuccess, (state, { username }) => ({
       ...state,
       isLoggedIn: true,
-      username: email
+      username: username
     })),
     on(logout, (state) => ({
       ...state,

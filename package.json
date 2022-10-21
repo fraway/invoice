@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "fake-server": "npx json-server fake-db/db.json -p 6001"
   },
   "private": true,
   "dependencies": {

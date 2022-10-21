@@ -13,6 +13,10 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>invoice</span>
+
+      <ng-container *ngIf="(isLoggedIn$ | async) as isLoggedIn">
+        <button type="button" (click)="logout()" *ngIf="isLoggedIn">Logout</button>
+      </ng-container>
     </mat-toolbar>
     <!-- Add Content Here -->
 

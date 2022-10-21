@@ -9,6 +9,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChangeEmailComponent } from './change-email/change-email.component';
 import { MaterialModule } from '../material/material.module';
+import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthEffect } from './effects/auth.effects';
 
 
 @NgModule({
@@ -23,7 +26,9 @@ import { MaterialModule } from '../material/material.module';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    StoreModule.forFeature(usersFeature)
+    HttpClientModule,
+    StoreModule.forFeature(usersFeature),
+    EffectsModule.forFeature([AuthEffect])
   ]
 })
 export class UsersModule { }

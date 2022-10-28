@@ -3,7 +3,6 @@ import { NonNullableFormBuilder } from '@angular/forms';
 import { first } from 'rxjs';
 import { BaseComponent } from 'src/app/shared/base.component';
 import { emailFormControl } from 'src/app/shared/controls';
-import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -22,13 +21,13 @@ export class ChangeEmailComponent extends BaseComponent implements OnInit {
   constructor() {
     super();
 
-    inject(AuthService).username$.pipe(
-      first(),
-      this.unsubscribe()
-    )
-      .subscribe(username => {
-        this.form.patchValue({ currentEmail: username })
-      })
+    // inject(AuthService).username$.pipe(
+    //   first(),
+    //   this.unsubscribe()
+    // )
+    //   .subscribe(username => {
+    //     this.form.patchValue({ currentEmail: username })
+    //   })
   }
 
   ngOnInit(): void {

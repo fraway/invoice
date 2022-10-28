@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthComponent } from './auth/auth.component';
+import { ChangeEmailComponent } from './change-email/change-email.component';
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: AuthComponent
+    path: 'change-email',
+    component: ChangeEmailComponent
   }
 ];
 

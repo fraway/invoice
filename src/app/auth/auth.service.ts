@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
+import { createAction, Store } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from './models';
-import { selectIsLoggedIn, selectUsername } from './reducers';
-import { autologin, login, logout } from './reducers/users.actions';
+import { User } from '../auth/models';
+import { autoLogin, login, logout } from './auth.actions';
+import { selectIsLoggedIn } from './auth.reducer';
 
 @Injectable({
   providedIn: 'root'
@@ -15,17 +15,15 @@ export class AuthService {
   constructor(
     private store: Store,
     private client: HttpClient
-  ) {
+  ) { }
 
+  autoLogin() {
     const storedId = this.getUserCredentials();
     if (storedId == null || storedId.length == 0) {
-      return;
+      return createAction('[Auth Service] No stored credentials')();
     }
 
-    setTimeout(() => {
-
-      this.store.dispatch(autologin({ id: storedId }))
-    }, 2000);
+    return autoLogin({ id: storedId })
   }
 
   doLogin(username: string, password: string) {
@@ -48,11 +46,11 @@ export class AuthService {
     return of()
   }
 
-  get username$() {
-    return this.store.select(selectUsername)
-  }
+  // get username$() {
+  //   return this.store.select(selectUsername)
+  // }
 
-  get isLoggedIn$() {
+  get isLoggedIn$(): Observable<boolean> {
     return this.store.select(selectIsLoggedIn)
   }
 

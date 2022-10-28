@@ -1,14 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { NonNullableFormBuilder, Validators } from '@angular/forms';
-import { emailFormControl, passwordFormControl } from '../../shared/controls';
-import { AuthService } from '../auth.service';
+import { NonNullableFormBuilder } from '@angular/forms';
+import { emailFormControl, passwordFormControl } from '../../../shared/controls';
+import { AuthService } from '../../auth.service';
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class AuthComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   _auth = inject(AuthService)
   fb = inject(NonNullableFormBuilder);
@@ -27,7 +27,6 @@ export class AuthComponent implements OnInit {
 
   login() {
     const value = this.form.getRawValue();
-    console.log(value);
     this._auth.login(value.email, value.password).subscribe();
   }
 

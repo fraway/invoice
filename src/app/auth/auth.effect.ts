@@ -1,7 +1,8 @@
 import { inject, Injectable } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Actions, createEffect, ofType, OnInitEffects } from "@ngrx/effects";
 import { Action } from "@ngrx/store";
-import { catchError, map, of, switchMap, tap } from "rxjs";
+import { catchError, filter, map, mapTo, of, switchMap, tap } from "rxjs";
 import { autoLogin, loginFailure, loginSuccess, login, logout } from "./auth.actions";
 import { AuthService } from "./auth.service";
 import { User } from "./models";
@@ -11,7 +12,9 @@ export class AuthEffect implements OnInitEffects {
 
     constructor(
         private actions$: Actions,
-        private _auth: AuthService
+        private _auth: AuthService,
+        private route: ActivatedRoute,
+        private router: Router
     ) { }
 
     ngrxOnInitEffects(): Action {
@@ -52,8 +55,20 @@ export class AuthEffect implements OnInitEffects {
         tap(({ id }) => this._auth.storeUserCredentials(id)),
     ), { dispatch: false })
 
+    onLoginRedirect$ = createEffect(() => this.actions$.pipe(
+        ofType(loginSuccess),
+        map(() => this.route.snapshot.queryParamMap.get('return_to') ?? '/'),
+        tap((url) => this.router.navigateByUrl(url, { replaceUrl: true })),
+    ), { dispatch: false })
+
     logout$ = createEffect(() => this.actions$.pipe(
         ofType(logout),
         tap(() => this._auth.clearUserCredentials()),
     ), { dispatch: false })
+
+    onLogoutRedirect$ = createEffect(() => this.actions$.pipe(
+        ofType(logout),
+        tap(() => this.router.navigate(['/'])),
+    ), { dispatch: false })
+
 }

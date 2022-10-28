@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
-import { AuthComponent } from './auth/auth.component';
 import { StoreModule } from '@ngrx/store';
 import { usersFeature } from './reducers';
 import { ProfileComponent } from './profile/profile.component';
@@ -11,12 +10,11 @@ import { ChangeEmailComponent } from './change-email/change-email.component';
 import { MaterialModule } from '../material/material.module';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthEffect } from './effects/auth.effects';
+import { UsersEffect } from './effects/auth.effects';
 
 
 @NgModule({
   declarations: [
-    AuthComponent,
     ProfileComponent,
     ChangeEmailComponent
   ],
@@ -28,7 +26,7 @@ import { AuthEffect } from './effects/auth.effects';
     MaterialModule,
     HttpClientModule,
     StoreModule.forFeature(usersFeature),
-    EffectsModule.forFeature([AuthEffect])
+    EffectsModule.forFeature([UsersEffect])
   ]
 })
 export class UsersModule { }

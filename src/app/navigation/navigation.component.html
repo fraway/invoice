@@ -7,15 +7,15 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" class="d-flex">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>invoice</span>
+      <span class="flex-fill">invoice</span>
 
       <ng-container *ngIf="(isLoggedIn$ | async) as isLoggedIn">
-        <button type="button" (click)="logout()" *ngIf="isLoggedIn">Logout</button>
+        <button mat-button type="button" (click)="logout()" *ngIf="isLoggedIn">Logout</button>
       </ng-container>
     </mat-toolbar>
     <!-- Add Content Here -->

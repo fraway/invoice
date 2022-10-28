@@ -5,7 +5,8 @@ import { ChangeEmailComponent } from './change-email/change-email.component';
 const routes: Routes = [
   {
     path: 'change-email',
-    component: ChangeEmailComponent
+    component: ChangeEmailComponent,
+    title: 'Cambia e-mail'
   }
 ];
 

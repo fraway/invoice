@@ -4,6 +4,10 @@ import { ChangeEmailComponent } from './change-email/change-email.component';
 
 const routes: Routes = [
   {
+    path: 'profile',
+    redirectTo: 'change-email'
+  },
+  {
     path: 'change-email',
     component: ChangeEmailComponent,
     title: 'Cambia e-mail'

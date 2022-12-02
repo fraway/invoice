@@ -2,13 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ClientsRoutingModule } from './clients-routing.module';
+import { ClientsListComponent } from './clients-list/clients-list.component';
+import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ClientsListComponent
+  ],
   imports: [
     CommonModule,
-    ClientsRoutingModule
+    ClientsRoutingModule,
+    MaterialModule
   ]
 })
 export class ClientsModule { }

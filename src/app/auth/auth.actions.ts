@@ -13,7 +13,7 @@ export const login = createAction(
 
 export const loginSuccess = createAction(
     '[Auth Effects] Login Successful',
-    props<User>()
+    props<{ user: User, redirect: boolean }>()
 );
 
 export const loginFailure = createAction(

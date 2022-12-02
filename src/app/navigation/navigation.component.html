@@ -17,6 +17,7 @@
 
       <ng-container *ngIf="(isLoggedIn$ | async) as isLoggedIn; else login">
         <a mat-button routerLink="/app/users/profile" *ngIf="isLoggedIn">Profile</a>
+        <button mat-button (click)="logout()">LOGOUT</button>
       </ng-container>
 
       <ng-template #login>

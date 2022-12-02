@@ -18,6 +18,7 @@ export class AuthEffect implements OnInitEffects {
     ) { }
 
     ngrxOnInitEffects(): Action {
+        // console.log("route on init", this.router.url);
         return this._auth.autoLogin();
     }
 
@@ -29,8 +30,11 @@ export class AuthEffect implements OnInitEffects {
                 if (users.length == 0) {
                     return loginFailure({ message: 'credenziali errate' });
                 }
-
-                return loginSuccess(users[0]);
+                // console.log("current route: ", this.route.snapshot.url)
+                return loginSuccess({
+                    user: users[0],
+                    redirect: false
+                });
             }),
             catchError((e: any) => of(loginFailure({ message: e.message })))
         ))
@@ -44,7 +48,10 @@ export class AuthEffect implements OnInitEffects {
                     return loginFailure({ message: 'credenziali errate' });
                 }
 
-                return loginSuccess(users[0]);
+                return loginSuccess({
+                    user: users[0],
+                    redirect: true
+                });
             }),
             catchError((e: any) => of(loginFailure({ message: e.message })))
         ))
@@ -52,14 +59,24 @@ export class AuthEffect implements OnInitEffects {
 
     loginSuccess$ = createEffect(() => this.actions$.pipe(
         ofType(loginSuccess),
-        tap(({ id }) => this._auth.storeUserCredentials(id)),
+        tap(({ user }) => this._auth.storeUserCredentials(user.id)),
     ), { dispatch: false })
 
     onLoginRedirect$ = createEffect(() => this.actions$.pipe(
         ofType(loginSuccess),
-        map(() => this.route.snapshot.queryParamMap.get('return_to') ?? '/'),
+        filter((a) => a.redirect),
+        tap(() => console.log(this.router.url)),
+        map(() => {
+            const query = this.route.snapshot.queryParamMap;
+            if (query.has('return_to')) {
+                return query.get('return_to')!;
+            }
+
+            return '/';
+        }),
         tap((url) => this.router.navigateByUrl(url, { replaceUrl: true })),
-    ), { dispatch: false })
+        map((url) => ({ type: '[Auth Effects] Redirect on login', url: url }))
+    ))
 
     logout$ = createEffect(() => this.actions$.pipe(
         ofType(logout),
